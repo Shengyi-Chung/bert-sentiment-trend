@@ -31,17 +31,19 @@ def compute_metrics(eval_pred):
 
 # 5. trainer
 args = TrainingArguments(
-    output_dir="ckpt_final",
-    per_device_train_batch_size=32,
-    per_device_eval_batch_size=32,
-    num_train_epochs=4,
+    output_dir="ckpt_cloud",
+    per_device_train_batch_size=64,
+    per_device_eval_batch_size=64,
+    num_train_epochs=3,
     eval_strategy="epoch",
-    learning_rate=3e-5,
+    learning_rate=2e-5,
     weight_decay=0.01,
+    warmup_ratio=0.1,
     logging_steps=100,
     report_to="none",
     save_strategy="no",
     seed=3407,
+    logging_dir="runs_cloud",
 )
 trainer = Trainer(
     model=model,
